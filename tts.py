@@ -26,11 +26,10 @@ if "speed" is not form:
     speed="110"
 else:
     speed=form["speed"].value
-
 #print 'espeak -w data/out.wav -v '+voice+' -s '+speed+' "'+text+'"'
 os.system('espeak -w data/out.wav -v '+voice+' -s '+speed+' "'+text+'"')
 os.system('lame data/out.wav data/out.mp3')
-print '<a href="data/out.mp3">Answer</a>
+print "<a href='data/out.mp3'>Answer</a>"
 print """</body>
 </html>
 """
