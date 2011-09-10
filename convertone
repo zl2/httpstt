@@ -1,0 +1,21 @@
+#!/bin/sh
+
+hmmdir=/path/to/model
+lmfile=/path/to/3221.lm
+dictfile=/path/to/3221.dic
+sphinx_fe=/path/to/sphinx_fe
+pocketsphinx_batch=/path/to/pocketsphinx_batch
+
+cd data
+if [ -e $1 ]
+then
+ #convert everything to mfc
+ sox $1 -r 16000 -c 1 -s -w simple.wav
+ ls `pwd`/simple.wav | sed -e 's/.wav//g' > sphinx_fescript
+ $sphinx_fe -samprate 16000 -ei wav -eo mfc -c sphinx_fescript 2>> runlog
+ $pocketsphinx_batch -hmm $hmmdir -lm $lmfile -dict $dictfile -ctl sphinx_fescript -hyp output.hyp 2>> runlog > /dev/null
+ #python parseoutput.py output.hyp
+ #requires existence of the directory archive
+ mv $1 archive
+ # could remove the temporary files created (and the move the recording if processed).
+fi
