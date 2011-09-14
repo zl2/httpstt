@@ -10,7 +10,7 @@ cd data
 if [ -e $1 ]
 then
  #convert everything to mfc
- sox $1 -r 16000 -c 1 -s -w simple.wav
+ sox $1 -r 16000 -c 1 -s simple.wav
  ls `pwd`/simple.wav | sed -e 's/.wav//g' > sphinx_fescript
  $sphinx_fe -samprate 16000 -ei wav -eo mfc -c sphinx_fescript 2>> runlog
  $pocketsphinx_batch -hmm $hmmdir -lm $lmfile -dict $dictfile -ctl sphinx_fescript -hyp output.hyp 2>> runlog > /dev/null
