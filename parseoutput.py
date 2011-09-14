@@ -1,7 +1,7 @@
 import os
 
 def parse(filename):
-    os.chdir("data")
+    os.chdir(open("sttconfig").readline().strip())
     try:
         indata=open(filename).read()
     except:

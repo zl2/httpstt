@@ -6,7 +6,7 @@ dictfile=/path/to/3221.dic
 sphinx_fe=/path/to/sphinx_fe
 pocketsphinx_batch=/path/to/pocketsphinx_batch
 
-cd data
+cd `cat sttconfig`
 if [ -e $1 ]
 then
  #convert everything to mfc

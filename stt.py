@@ -37,11 +37,13 @@ def getfile(fieldname,filename):
     f.close()
     return True
 
+datadir = open("sttconfig").readline().strip()
+inputfile = os.path.join(datadir,"input.wav")
 #could use a variable filename for archiving
-if "skipget" in form or getfile("file","data/input.wav"):
+if "skipget" in form or getfile("file",inputfile):
     print "File successfully obtained.<br>"
     sys.stdout.flush()
-    errorcode=os.system("./convertone "+"input.wav")
+    errorcode=os.system("./convertone "+inputfile)
 
     parse("output.hyp")
 print """</body>
